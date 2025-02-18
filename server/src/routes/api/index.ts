@@ -10,6 +10,12 @@ router.use((req, _res, next) => {
   next();
 });
 
+// Add a test route at the API root
+router.get('/', (_req, res) => {
+  res.json({ message: 'API routes working' });
+});
+
+// Mount sub-routers
 router.use('/tickets', ticketRouter);
 router.use('/users', userRouter);
 

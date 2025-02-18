@@ -7,6 +7,11 @@ router.use((req, _res, next) => {
     console.log(`Incoming request: ${req.method} ${req.path}`);
     next();
 });
+// Add a test route at the API root
+router.get('/', (_req, res) => {
+    res.json({ message: 'API routes working' });
+});
+// Mount sub-routers
 router.use('/tickets', ticketRouter);
 router.use('/users', userRouter);
 // Catch-all error handler
