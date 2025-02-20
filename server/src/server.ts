@@ -16,9 +16,11 @@ app.use((req, _res, next) => {
   next();
 });
 
-// Match the CORS configuration from the working file
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "https://krazy-kanban-board2.onrender.com"
+  ],
   credentials: true,
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type", "Authorization"]
