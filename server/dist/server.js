@@ -12,9 +12,12 @@ app.use((req, _res, next) => {
     console.log('Headers:', req.headers);
     next();
 });
+// Match the CORS configuration from the working file
 app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
+    origin: "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 app.use(express.json());
 // Root test route
@@ -27,6 +30,8 @@ app.get('/api-test', (_req, res) => {
 });
 // Mount all routes
 app.use('/', routes);
+// Add static file serving like in the working file
+app.use(express.static("../client/dist"));
 // Final error handler
 app.use((err, req, res, _next) => {
     console.error('Error:', {
@@ -46,4 +51,3 @@ sequelize.sync().then(() => {
 }).catch(err => {
     console.error('Database connection failed:', err);
 });
-export default app;
