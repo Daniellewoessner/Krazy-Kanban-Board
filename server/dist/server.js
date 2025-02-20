@@ -12,7 +12,10 @@ app.use((req, _res, next) => {
     console.log('Headers:', req.headers);
     next();
 });
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 app.use(express.json());
 // Root test route
 app.get('/', (_req, res) => {
