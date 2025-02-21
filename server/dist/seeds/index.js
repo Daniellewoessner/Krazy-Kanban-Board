@@ -1,19 +1,14 @@
-import { seedUsers } from './user-seeds.js';
-import { seedTickets } from './ticket-seeds.js';
+import { seedUsers } from "./user-seeds.js";
 import { sequelize } from '../models/index.js';
-const seedAll = async () => {
+const seed = async () => {
     try {
         await sequelize.sync({ force: true });
-        console.log('\n----- DATABASE SYNCED -----\n');
         await seedUsers();
-        console.log('\n----- USERS SEEDED -----\n');
-        await seedTickets();
-        console.log('\n----- TICKETS SEEDED -----\n');
         process.exit(0);
     }
-    catch (error) {
-        console.error('Error seeding database:', error);
+    catch (err) {
+        console.error('error seeding datbase');
         process.exit(1);
     }
 };
-seedAll();
+seed();
