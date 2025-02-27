@@ -8,7 +8,7 @@ interface LoginRequest {
   password: string;
 }
 
-export const login = async (req: Request<{}, {}, LoginRequest>, res: Response) => {
+export const login = async (req: Request<{}, {}, LoginRequest, any>, res: Response) => {
   try {
     const { username, password } = req.body;
     
