@@ -8,7 +8,6 @@ import { TicketFactory } from './ticket.js';
 let sequelize: Sequelize;
 
 if (process.env.NODE_ENV === 'production') {
-  // Use ExternalDatabase URL for Render
   sequelize = new Sequelize(process.env.ExternalDatabase || '', {
     dialect: 'postgres',
     dialectOptions: {
@@ -22,7 +21,6 @@ if (process.env.NODE_ENV === 'production') {
   });
   console.log('Using production database configuration');
 } else {
-  // Use local database configuration
   sequelize = new Sequelize(process.env.DB_NAME!, process.env.DB_USER!, process.env.DB_PASSWORD, {
     host: 'localhost',
     dialect: 'postgres',
@@ -34,7 +32,6 @@ if (process.env.NODE_ENV === 'production') {
   console.log('Using development database configuration');
 }
 
-// Test the connection and log the result
 sequelize
   .authenticate()
   .then(() => {
